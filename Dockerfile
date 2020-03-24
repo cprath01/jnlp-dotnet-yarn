@@ -26,8 +26,6 @@ RUN curl -SL --output dotnet.tar.gz https://dotnetcli.azureedge.net/dotnet/Sdk/$
     && rm dotnet.tar.gz \
     && ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
 
-RUN dotnet tool install --global dotnet-sonarscanner
-
 # set up node
 ENV NODE_VERSION 10.19.0
 ENV YARN_VERSION 1.17.3
@@ -43,3 +41,5 @@ RUN curl -SL "$NODE_DOWNLOAD_URL" --output nodejs.tar.gz \
     && ln -s /usr/local/bin/node /usr/local/bin/nodejs
 
 USER jenkins
+
+RUN dotnet tool install --global dotnet-sonarscanner
