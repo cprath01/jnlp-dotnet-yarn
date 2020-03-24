@@ -43,3 +43,11 @@ RUN curl -SL "$NODE_DOWNLOAD_URL" --output nodejs.tar.gz \
 USER jenkins
 
 RUN dotnet tool install --global dotnet-sonarscanner
+RUN echo '#!/bin/bash\n\
+cat << \EOF >> ~/.bash_profile\n\
+export PATH="$PATH:/home/jenkins/.dotnet/tools"\n\
+EOF\n'\
+> ~/updatePath.sh
+RUN chmod a+x updatePath.sh
+RUN ./updatePath.sh
+RUN rm ./updatePath.sh
